@@ -8,12 +8,7 @@
     "npm": ">= 6.4.0",
     "yarn": ">= 1.10.0"
   },
-  "files": [
-    "/contracts/FlashLender.sol",
-    "/contracts/FlashMinter.sol",
-    "/interfaces/IERC3516FlashBorrower.sol",
-    "/interfaces/IERC3516FlashLender.sol"
-  ],
+  "files": [],
   "keywords": [
     "solidity",
     "ethereum",
