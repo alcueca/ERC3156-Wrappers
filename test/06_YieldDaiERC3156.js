@@ -1,4 +1,6 @@
 const Pool = artifacts.require('Pool')
+const YieldMath = artifacts.require('YieldMath')
+const YieldMathWrapper = artifacts.require('YieldMathWrapper')
 const FYDaiMock = artifacts.require('FYDaiMock')
 const ERC20Mock = artifacts.require('ERC20Mock')
 const YieldDaiERC3156 = artifacts.require('YieldDaiERC3156')
@@ -22,6 +24,12 @@ contract('YieldDaiERC3156', async (accounts) => {
 
   let maturity0
 
+  before(async () => {
+    const yieldMathLibrary = await YieldMath.new()
+    await Pool.link(yieldMathLibrary)
+    await YieldMathWrapper.link(yieldMathLibrary)
+  })
+
   beforeEach(async () => {
 
     // Setup fyDai
@@ -40,8 +48,11 @@ contract('YieldDaiERC3156', async (accounts) => {
     await pool.mint(user1, user1, pooledDai, { from: user1 })
     await fyDai.mint(pool.address, pooledFYDai)
 
+    // Set up the YieldMath wrapper
+    const yieldMathWrapper = await YieldMathWrapper.new()
+
     // Set up the ERC3156 wrapper
-    lender = await YieldDaiERC3156.new(pool.address)
+    lender = await YieldDaiERC3156.new(pool.address, yieldMathWrapper.address)
 
     // Set up the borrrower
     borrower = await FlashBorrower.new()

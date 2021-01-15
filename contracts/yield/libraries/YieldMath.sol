@@ -22,7 +22,7 @@ library YieldMath {
   function fyDaiOutForDaiIn (
     uint128 daiReserves, uint128 fyDaiReserves, uint128 daiAmount,
     uint128 timeTillMaturity, int128 k, int128 g)
-  internal pure returns (uint128) {
+  public pure returns (uint128) {
     // t = k * timeTillMaturity
     int128 t = Math64x64.mul (k, Math64x64.fromUInt (timeTillMaturity));
 
@@ -61,7 +61,7 @@ library YieldMath {
   function daiOutForFYDaiIn (
     uint128 daiReserves, uint128 fyDaiReserves, uint128 fyDaiAmount,
     uint128 timeTillMaturity, int128 k, int128 g)
-  internal pure returns (uint128) {
+  public pure returns (uint128) {
     // t = k * timeTillMaturity
     int128 t = Math64x64.mul (k, Math64x64.fromUInt (timeTillMaturity));
 
@@ -102,7 +102,7 @@ library YieldMath {
   function fyDaiInForDaiOut (
     uint128 daiReserves, uint128 fyDaiReserves, uint128 daiAmount,
     uint128 timeTillMaturity, int128 k, int128 g)
-  internal pure returns (uint128) {
+  public pure returns (uint128) {
     // t = k * timeTillMaturity
     int128 t = Math64x64.mul (k, Math64x64.fromUInt (timeTillMaturity));
 
@@ -143,7 +143,7 @@ library YieldMath {
   function daiInForFYDaiOut (
     uint128 daiReserves, uint128 fyDaiReserves, uint128 fyDaiAmount,
     uint128 timeTillMaturity, int128 k, int128 g)
-  internal pure returns (uint128) {
+  public pure returns (uint128) {
     // a = (1 - g * k * timeTillMaturity)
     int128 a = Math64x64.sub (0x10000000000000000, Math64x64.mul (g, Math64x64.mul (k, Math64x64.fromUInt (timeTillMaturity))));
     require (a > 0, "YieldMath: Too far from maturity");

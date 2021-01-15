@@ -3,7 +3,6 @@
 pragma solidity ^0.7.5;
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
-import "./libraries/YieldMath.sol";
 import "./libraries/SafeCast.sol";
 import "../interfaces/IERC3156FlashBorrower.sol";
 import "../interfaces/IERC3156FlashLender.sol";
@@ -11,6 +10,9 @@ import "./interfaces/YieldFlashBorrowerLike.sol";
 import "./interfaces/IPool.sol";
 import "./interfaces/IFYDai.sol";
 
+interface IYieldMathWrapper {
+    function daiInForFYDaiOut(uint128, uint128, uint128, uint128, int128, int128) external view returns (bool, uint128);
+}
 
 /**
  * YieldDaiLender allows ERC-3156 Dai flash loans out of a YieldSpace pool, by flash minting fyDai and selling it to the pool.
@@ -20,10 +22,12 @@ contract YieldDaiERC3156 is IERC3156FlashLender, YieldFlashBorrowerLike {
     using SafeMath for uint256;
 
     IPool public pool;
+    IYieldMathWrapper public yieldMath;
 
     /// @param pool_ One of Yield Pool addresses
-    constructor (IPool pool_) {
+    constructor (IPool pool_, IYieldMathWrapper yieldMath_) {
         pool = pool_;
+        yieldMath = yieldMath_;
 
         // Allow pool to take dai and fyDai for trading
         if (pool.dai().allowance(address(this), address(pool)) < type(uint256).max)
@@ -52,9 +56,9 @@ contract YieldDaiERC3156 is IERC3156FlashLender, YieldFlashBorrowerLike {
         uint128 fyDaiAmount = pool.buyDaiPreview(amount.toUint128());
 
         // To obtain the result of a trade on hypothetical reserves we need to call the YieldMath library
-        uint256 daiRepaid = YieldMath.daiInForFYDaiOut(
-            (uint256(pool.getDaiReserves()).sub(amount)).toUint128(),    // Dai reserves minus Dai we just bought
-            (uint256(pool.getFYDaiReserves()).add(fyDaiAmount)).toUint128(),  // fyDai reserves plus fyDai we just sold
+        (, uint256 daiRepaid) = yieldMath.daiInForFYDaiOut(
+            (uint256(pool.getDaiReserves()).sub(amount)).toUint128(),           // Dai reserves minus Dai we just bought
+            (uint256(pool.getFYDaiReserves()).add(fyDaiAmount)).toUint128(),    // fyDai reserves plus fyDai we just sold
             fyDaiAmount,                                                        // fyDai flash mint we have to repay
             (pool.fyDai().maturity() - block.timestamp).toUint128(),                      // This can't be called after maturity
             int128(uint256((1 << 64)) / 126144000),                             // 1 / Seconds in 4 years, in 64.64
