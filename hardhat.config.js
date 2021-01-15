@@ -4,6 +4,7 @@ require('@nomiclabs/hardhat-truffle5')
 require('solidity-coverage')
 require('hardhat-gas-reporter')
 require('hardhat-deploy')
+require('@nomiclabs/hardhat-etherscan')
 
 
 // REQUIRED TO ENSURE METADATA IS SAVED IN DEPLOYMENTS (because solidity-coverage disable it otherwise)
@@ -37,6 +38,13 @@ const accounts = mnemonic ? {
   mnemonic,
 }: undefined;
 
+let etherscanKey = process.env.ETHERSCANKEY;
+if (!etherscanKey) {
+  try {
+    etherscanKey = fs.readFileSync(path.resolve(__dirname, '.etherscanKey')).toString().trim()
+  } catch(e){}
+}
+
 module.exports = {
   defaultNetwork: 'hardhat',
   networks: {
@@ -63,6 +71,9 @@ module.exports = {
     coverage: {
       url: 'http://127.0.0.1:8555',
     },
+  },
+  etherscan: {
+    apiKey: etherscanKey
   },
   solidity: {
     version: '0.7.5',

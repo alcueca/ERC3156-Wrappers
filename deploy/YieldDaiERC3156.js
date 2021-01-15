@@ -18,13 +18,11 @@ const func = async function ({ deployments, getNamedAccounts, getChainId }) {
     console.log('Local deployments not implemented')
     return
   } else {
+
     const lender = await deploy('YieldDaiERC3156', {
       from: deployer,
       deterministicDeployment: true,
-      args: [
-        addresses[chainId]['fyDaiLP21Mar31'],
-        addresses[chainId]['YieldMathWrapper'],
-      ],
+      args: require(`./YieldDaiERC3156-args-${chainId}`),
     })
     console.log(`Deployed YieldDaiERC3156 to ${lender.address}`);
   }

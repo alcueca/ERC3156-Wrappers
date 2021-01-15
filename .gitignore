@@ -11,9 +11,12 @@ node_modules/
 output/
 
 # Truffle files
+build/
+
+# Secrets
+.etherscanKey
 .infuraKey
 .secret
-build/
 
 # Solidity-coverage
 coverage/
