@@ -5,8 +5,8 @@ pragma experimental ABIEncoderV2;
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "../interfaces/IERC3156FlashBorrower.sol";
-import "../interfaces/IERC3156FlashLender.sol";
+import "erc3156/contracts/interfaces/IERC3156FlashBorrower.sol";
+import "erc3156/contracts/interfaces/IERC3156FlashLender.sol";
 import "./interfaces/SoloMarginLike.sol";
 import "./interfaces/DYDXFlashBorrowerLike.sol";
 import "./libraries/DYDXDataTypes.sol";
@@ -15,6 +15,7 @@ import "./libraries/DYDXDataTypes.sol";
 contract DYDXERC3156 is IERC3156FlashLender, DYDXFlashBorrowerLike {
     using SafeMath for uint256;
 
+    bytes32 public constant CALLBACK_SUCCESS = keccak256("ERC3156FlashBorrower.onFlashLoan");
     uint256 internal NULL_ACCOUNT_ID = 0;
     uint256 internal NULL_MARKET_ID = 0;
     DYDXDataTypes.AssetAmount internal NULL_AMOUNT = DYDXDataTypes.AssetAmount({
@@ -67,7 +68,7 @@ contract DYDXERC3156 is IERC3156FlashLender, DYDXFlashBorrowerLike {
      * @param amount The amount of tokens lent.
      * @param userData A data parameter to be passed on to the `receiver` for any custom use.
      */
-    function flashLoan(IERC3156FlashBorrower receiver, address token, uint256 amount, bytes memory userData) external override {
+    function flashLoan(IERC3156FlashBorrower receiver, address token, uint256 amount, bytes memory userData) external override returns(bool) {
         DYDXDataTypes.ActionArgs[] memory operations = new DYDXDataTypes.ActionArgs[](3);
         operations[0] = getWithdrawAction(token, amount);
         operations[1] = getCallAction(abi.encode(msg.sender, receiver, token, amount, userData));
@@ -76,6 +77,7 @@ contract DYDXERC3156 is IERC3156FlashLender, DYDXFlashBorrowerLike {
         accountInfos[0] = getAccountInfo();
 
         soloMargin.operate(accountInfos, operations);
+        return true;
     }
 
     /// @dev DYDX flash loan callback. It sends the value borrowed to `receiver`, and takes it back plus a `flashFee` after the ERC3156 callback.
@@ -96,7 +98,10 @@ contract DYDXERC3156 is IERC3156FlashLender, DYDXFlashBorrowerLike {
 
         // Transfer to `receiver`
         require(IERC20(token).transfer(address(receiver), amount), "Transfer failed");
-        receiver.onFlashLoan(origin, token, amount, fee, userData);
+        require(
+            receiver.onFlashLoan(origin, token, amount, fee, userData) == CALLBACK_SUCCESS,
+            "Callback failed"
+        );
         require(IERC20(token).transferFrom(address(receiver), address(this), amount.add(fee)), "Transfer failed");
 
         // Approve the SoloMargin contract allowance to *pull* the owed amount

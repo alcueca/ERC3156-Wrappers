@@ -5,8 +5,8 @@ pragma experimental ABIEncoderV2;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
-import "../interfaces/IERC3156FlashBorrower.sol";
-import "../interfaces/IERC3156FlashLender.sol";
+import "erc3156/contracts/interfaces/IERC3156FlashBorrower.sol";
+import "erc3156/contracts/interfaces/IERC3156FlashLender.sol";
 import "./interfaces/AaveFlashBorrowerLike.sol";
 import "./interfaces/LendingPoolLike.sol";
 import "./interfaces/LendingPoolAddressesProviderLike.sol";
@@ -20,6 +20,7 @@ import "./libraries/AaveDataTypes.sol";
 contract AaveERC3156 is IERC3156FlashLender, AaveFlashBorrowerLike {
     using SafeMath for uint256;
 
+    bytes32 public constant CALLBACK_SUCCESS = keccak256("ERC3156FlashBorrower.onFlashLoan");
     LendingPoolLike public lendingPool;
 
     /// @param provider Aave v2 LendingPoolAddresses address
@@ -56,7 +57,7 @@ contract AaveERC3156 is IERC3156FlashLender, AaveFlashBorrowerLike {
      * @param amount The amount of tokens lent.
      * @param userData A data parameter to be passed on to the `receiver` for any custom use.
      */
-    function flashLoan(IERC3156FlashBorrower receiver, address token, uint256 amount, bytes calldata userData) external override {
+    function flashLoan(IERC3156FlashBorrower receiver, address token, uint256 amount, bytes calldata userData) external override returns(bool) {
         address[] memory tokens = new address[](1);
         tokens[0] = address(token);
 
@@ -80,6 +81,7 @@ contract AaveERC3156 is IERC3156FlashLender, AaveFlashBorrowerLike {
             data,
             referralCode
         );
+        return true;
     }
 
     /// @dev Aave flash loan callback. It sends the amount borrowed to `receiver`, and takes it back plus a `flashFee` after the ERC3156 callback.
@@ -104,7 +106,10 @@ contract AaveERC3156 is IERC3156FlashLender, AaveFlashBorrowerLike {
 
         // Send the tokens to the original receiver using the ERC-3156 interface
         IERC20(token).transfer(origin, amount);
-        receiver.onFlashLoan(origin, token, amount, fee, userData);
+        require(
+            receiver.onFlashLoan(origin, token, amount, fee, userData) == CALLBACK_SUCCESS,
+            "Callback failed"
+        );
         IERC20(token).transferFrom(origin, address(this), amount.add(fee));
 
         // Approve the LendingPool contract allowance to *pull* the owed amount

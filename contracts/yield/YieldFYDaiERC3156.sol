@@ -4,8 +4,8 @@ pragma solidity ^0.7.5;
 
 import "./interfaces/IFYDai.sol";
 import "./interfaces/YieldFlashBorrowerLike.sol";
-import "../interfaces/IERC3156FlashBorrower.sol";
-import "../interfaces/IERC3156FlashLender.sol";
+import "erc3156/contracts/interfaces/IERC3156FlashBorrower.sol";
+import "erc3156/contracts/interfaces/IERC3156FlashLender.sol";
 
 
 /**
@@ -13,6 +13,7 @@ import "../interfaces/IERC3156FlashLender.sol";
  */
 contract YieldFYDaiERC3156 is IERC3156FlashLender, YieldFlashBorrowerLike {
 
+    bytes32 public constant CALLBACK_SUCCESS = keccak256("ERC3156FlashBorrower.onFlashLoan");
     mapping(address => bool) public fyDaisSupported;
 
     /// @param fyDais List of Yield FYDai contracts that will be supported for flash lending.
@@ -49,9 +50,10 @@ contract YieldFYDaiERC3156 is IERC3156FlashLender, YieldFlashBorrowerLike {
      * @param amount The amount of tokens lent.
      * @param userData A data parameter to be passed on to the `receiver` for any custom use.
      */
-    function flashLoan(IERC3156FlashBorrower receiver, address token, uint256 amount, bytes memory userData) public override {
+    function flashLoan(IERC3156FlashBorrower receiver, address token, uint256 amount, bytes memory userData) public override returns(bool) {
         bytes memory data = abi.encode(msg.sender, receiver, userData);
         IFYDai(token).flashMint(amount, data);
+        return true;
     }
 
     /// @dev FYDai flash loan callback. It sends the value borrowed to `receiver`, and takes the value back after the callback.
@@ -59,7 +61,10 @@ contract YieldFYDaiERC3156 is IERC3156FlashLender, YieldFlashBorrowerLike {
         (address origin, IERC3156FlashBorrower receiver, bytes memory userData) = 
             abi.decode(data, (address, IERC3156FlashBorrower, bytes));
         IFYDai(msg.sender).transfer(address(receiver), amount);
-        receiver.onFlashLoan(origin, msg.sender, amount, 0, userData); // msg.sender is the lending fyDai contract
+        require(
+            receiver.onFlashLoan(origin, msg.sender, amount, 0, userData) == CALLBACK_SUCCESS,  // msg.sender is the lending fyDai contract
+            "Callback failed"
+        );
         IFYDai(msg.sender).transferFrom(address(receiver), address(this), amount);
         IFYDai(msg.sender).approve(msg.sender, amount);
     }

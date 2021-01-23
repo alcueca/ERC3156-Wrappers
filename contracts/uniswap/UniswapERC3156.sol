@@ -5,8 +5,8 @@ pragma solidity ^0.7.5;
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "../interfaces/IERC3156FlashBorrower.sol";
-import "../interfaces/IERC3156FlashLender.sol";
+import "erc3156/contracts/interfaces/IERC3156FlashBorrower.sol";
+import "erc3156/contracts/interfaces/IERC3156FlashLender.sol";
 import "./interfaces/UniswapV2PairLike.sol";
 import "./interfaces/UniswapV2FactoryLike.sol";
 import "./interfaces/UniswapV2FlashBorrowerLike.sol";
@@ -16,6 +16,7 @@ contract UniswapERC3156 is IERC3156FlashLender, UniswapV2FlashBorrowerLike {
     using SafeMath for uint256;
 
     // CONSTANTS
+    bytes32 public constant CALLBACK_SUCCESS = keccak256("ERC3156FlashBorrower.onFlashLoan");
     UniswapV2FactoryLike public factory;
 
     // ACCESS CONTROL
@@ -77,7 +78,7 @@ contract UniswapERC3156 is IERC3156FlashLender, UniswapV2FlashBorrowerLike {
      * @param amount The amount of tokens lent.
      * @param userData A data parameter to be passed on to the `receiver` for any custom use.
      */
-    function flashLoan(IERC3156FlashBorrower receiver, address token, uint256 amount, bytes memory userData) external override {
+    function flashLoan(IERC3156FlashBorrower receiver, address token, uint256 amount, bytes memory userData) external override returns(bool) {
         address pairAddress = getPairAddress(token);
         require(pairAddress != address(0), "Unsupported currency");
 
@@ -96,6 +97,7 @@ contract UniswapERC3156 is IERC3156FlashLender, UniswapV2FlashBorrowerLike {
             userData
         );
         pair.swap(amount0Out, amount1Out, address(this), data);
+        return true;
     }
 
     /// @dev Uniswap flash loan callback. It sends the value borrowed to `receiver`, and takes it back plus a `flashFee` after the ERC3156 callback.
@@ -119,7 +121,10 @@ contract UniswapERC3156 is IERC3156FlashLender, UniswapV2FlashBorrowerLike {
         // send the borrowed amount to the receiver
         IERC20(token).transfer(address(receiver), amount);
         // do whatever the user wants
-        receiver.onFlashLoan(origin, token, amount, fee, userData);
+        require(
+            receiver.onFlashLoan(origin, token, amount, fee, userData) == CALLBACK_SUCCESS,
+            "Callback failed"
+        );
         // retrieve the borrowed amount plus fee from the receiver
         IERC20(token).transferFrom(address(receiver), address(this), amount.add(fee));
         

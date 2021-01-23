@@ -4,8 +4,8 @@ pragma solidity ^0.7.5;
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
 import "./libraries/SafeCast.sol";
-import "../interfaces/IERC3156FlashBorrower.sol";
-import "../interfaces/IERC3156FlashLender.sol";
+import "erc3156/contracts/interfaces/IERC3156FlashBorrower.sol";
+import "erc3156/contracts/interfaces/IERC3156FlashLender.sol";
 import "./interfaces/YieldFlashBorrowerLike.sol";
 import "./interfaces/IPool.sol";
 import "./interfaces/IFYDai.sol";
@@ -21,6 +21,7 @@ contract YieldDaiERC3156 is IERC3156FlashLender, YieldFlashBorrowerLike {
     using SafeCast for uint256;
     using SafeMath for uint256;
 
+    bytes32 public constant CALLBACK_SUCCESS = keccak256("ERC3156FlashBorrower.onFlashLoan");
     IPool public pool;
     IYieldMathWrapper public yieldMath;
 
@@ -75,11 +76,12 @@ contract YieldDaiERC3156 is IERC3156FlashLender, YieldFlashBorrowerLike {
      * @param amount The amount of tokens lent.
      * @param userData A data parameter to be passed on to the `receiver` for any custom use.
      */
-    function flashLoan(IERC3156FlashBorrower receiver, address token, uint256 amount, bytes memory userData) public override {
+    function flashLoan(IERC3156FlashBorrower receiver, address token, uint256 amount, bytes memory userData) public override returns(bool) {
         require(token == address(pool.dai()), "Unsupported currency");
         bytes memory data = abi.encode(msg.sender, receiver, amount, userData);
         uint256 fyDaiAmount = pool.buyDaiPreview(amount.toUint128());
         pool.fyDai().flashMint(fyDaiAmount, data); // Callback from fyDai will come back to this contract
+        return true;
     }
 
     /// @dev FYDai flash loan callback. It sends the value borrowed to `receiver`, and expects that the value plus the fee will be transferred back.
@@ -92,7 +94,10 @@ contract YieldDaiERC3156 is IERC3156FlashLender, YieldFlashBorrowerLike {
         uint256 paidFYDai = pool.buyDai(address(this), address(receiver), amount.toUint128());
 
         uint256 fee = uint256(pool.buyFYDaiPreview(fyDaiAmount.toUint128())).sub(amount);
-        receiver.onFlashLoan(origin, address(pool.dai()), amount, fee, userData);
+        require(
+            receiver.onFlashLoan(origin, address(pool.dai()), amount, fee, userData) == CALLBACK_SUCCESS,
+            "Callback failed"
+        );
         pool.dai().transferFrom(address(receiver), address(this), amount.add(fee));
         pool.sellDai(address(this), address(this), amount.add(fee).toUint128());
     }

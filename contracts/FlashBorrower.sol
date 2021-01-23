@@ -2,12 +2,14 @@
 pragma solidity ^0.7.5;
 
 import "./interfaces/IERC20.sol";
-import "./interfaces/IERC3156FlashBorrower.sol";
-import "./interfaces/IERC3156FlashLender.sol";
+import "erc3156/contracts/interfaces/IERC3156FlashBorrower.sol";
+import "erc3156/contracts/interfaces/IERC3156FlashLender.sol";
 
 
 contract FlashBorrower is IERC3156FlashBorrower {
     enum Action {NORMAL, STEAL, REENTER}
+
+    bytes32 public constant CALLBACK_SUCCESS = keccak256("ERC3156FlashBorrower.onFlashLoan");
 
     uint256 public flashBalance;
     address public flashSender;
@@ -16,7 +18,7 @@ contract FlashBorrower is IERC3156FlashBorrower {
     uint256 public flashFee;
 
     /// @dev ERC-3156 Flash loan callback
-    function onFlashLoan(address sender, address token, uint256 amount, uint256 fee, bytes calldata data) external override {
+    function onFlashLoan(address sender, address token, uint256 amount, uint256 fee, bytes calldata data) external override returns(bytes32) {
         require(sender == address(this), "FlashBorrower: External loan initiator");
         (Action action) = abi.decode(data, (Action)); // Use this to unpack arbitrary data
         flashSender = sender;
@@ -30,6 +32,7 @@ contract FlashBorrower is IERC3156FlashBorrower {
         } else if (action == Action.REENTER) {
             flashBorrow(IERC3156FlashLender(msg.sender), token, amount * 2);
         }
+        return CALLBACK_SUCCESS;
     }
 
     function flashBorrow(IERC3156FlashLender lender, address token, uint256 amount) public {
