@@ -33,7 +33,7 @@ contract AaveERC3156 is IERC3156FlashLender, AaveFlashBorrowerLike {
      * @param token The loan currency.
      * @return The amount of `token` that can be borrowed.
      */
-    function maxFlashAmount(address token) external view override returns (uint256) {
+    function maxFlashLoan(address token) external view override returns (uint256) {
         AaveDataTypes.ReserveData memory reserveData = lendingPool.getReserveData(token);
         return reserveData.aTokenAddress != address(0) ? IERC20(token).balanceOf(reserveData.aTokenAddress) : 0;
     }

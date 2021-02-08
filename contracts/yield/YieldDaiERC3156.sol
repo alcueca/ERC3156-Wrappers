@@ -42,7 +42,7 @@ contract YieldDaiERC3156 is IERC3156FlashLender, YieldFlashBorrowerLike {
      * @param token The loan currency. It must be Dai.
      * @return The amount of `token` that can be borrowed.
      */
-    function maxFlashAmount(address token) public view override returns (uint256) {
+    function maxFlashLoan(address token) public view override returns (uint256) {
         return token == address(pool.dai()) ? pool.getDaiReserves() : 0;
     }
 

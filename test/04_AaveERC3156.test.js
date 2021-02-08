@@ -32,9 +32,9 @@ contract('AaveERC3156', (accounts) => {
   })
 
   it('flash supply', async function () {
-    expect(await lender.maxFlashAmount(weth.address)).to.be.bignumber.equal(aaveBalance);
-    expect(await lender.maxFlashAmount(dai.address)).to.be.bignumber.equal(aaveBalance);
-    expect(await lender.maxFlashAmount(lender.address)).to.be.bignumber.equal("0");
+    expect(await lender.maxFlashLoan(weth.address)).to.be.bignumber.equal(aaveBalance);
+    expect(await lender.maxFlashLoan(dai.address)).to.be.bignumber.equal(aaveBalance);
+    expect(await lender.maxFlashLoan(lender.address)).to.be.bignumber.equal("0");
   });
 
   it('flash fee', async function () {

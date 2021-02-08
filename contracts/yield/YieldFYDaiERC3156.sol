@@ -28,7 +28,7 @@ contract YieldFYDaiERC3156 is IERC3156FlashLender, YieldFlashBorrowerLike {
      * @param token The loan currency. It must be a FYDai contract.
      * @return The amount of `token` that can be borrowed.
      */
-    function maxFlashAmount(address token) public view override returns (uint256) {
+    function maxFlashLoan(address token) public view override returns (uint256) {
         return fyDaisSupported[token] ? type(uint112).max - IFYDai(token).totalSupply() : 0;
     }
 

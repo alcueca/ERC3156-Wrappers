@@ -46,7 +46,7 @@ contract DYDXERC3156 is IERC3156FlashLender, DYDXFlashBorrowerLike {
      * @param token The loan currency.
      * @return The amount of `token` that can be borrowed.
      */
-    function maxFlashAmount(address token) external view override returns (uint256) {
+    function maxFlashLoan(address token) external view override returns (uint256) {
         return tokensRegistered[token] == true ? IERC20(token).balanceOf(address(soloMargin)) : 0;
     }
 

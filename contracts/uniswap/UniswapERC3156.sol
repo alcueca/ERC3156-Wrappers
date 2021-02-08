@@ -51,7 +51,7 @@ contract UniswapERC3156 is IERC3156FlashLender, UniswapV2FlashBorrowerLike {
      * @param token The loan currency.
      * @return The amount of `token` that can be borrowed.
      */
-    function maxFlashAmount(address token) external view override returns (uint256) {
+    function maxFlashLoan(address token) external view override returns (uint256) {
         address pairAddress = getPairAddress(token);
         if (pairAddress != address(0)) {
             uint256 balance = IERC20(token).balanceOf(pairAddress);

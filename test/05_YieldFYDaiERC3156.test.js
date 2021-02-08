@@ -22,8 +22,8 @@ contract('YieldFYDaiERC3156', (accounts) => {
   });
 
   it('flash supply', async function () {
-    expect(await lender.maxFlashAmount(fyDai.address)).to.be.bignumber.equal(MAX_UINT112);
-    expect(await lender.maxFlashAmount(lender.address)).to.be.bignumber.equal("0");
+    expect(await lender.maxFlashLoan(fyDai.address)).to.be.bignumber.equal(MAX_UINT112);
+    expect(await lender.maxFlashLoan(lender.address)).to.be.bignumber.equal("0");
   });
 
   it('flash fee', async function () {
