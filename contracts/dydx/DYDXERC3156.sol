@@ -34,7 +34,7 @@ contract DYDXERC3156 is IERC3156FlashLender, DYDXFlashBorrowerLike {
     constructor (SoloMarginLike soloMargin_) {
         soloMargin = soloMargin_;
 
-        for (uint256 marketId = 0; marketId <= 2; marketId++) {
+        for (uint256 marketId = 0; marketId <= 3; marketId++) {
             address token = soloMargin.getMarketTokenAddress(marketId);
             tokenAddressToMarketId[token] = marketId;
             tokensRegistered[token] = true;
