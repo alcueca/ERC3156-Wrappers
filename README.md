@@ -12,6 +12,12 @@ So far, only the dYdX wrapper has been deployed, to allow for a degree of testin
 | ------------- |-------------- |
 | DYDXERC3156 | 0x6bdC1FCB2F13d1bA9D26ccEc3983d5D4bf318693 |
 
+## Fantom
+
+| Lender Contract      | Lender Address       |
+| ------------- |-------------- |
+| UniswapERC3156 | 0xa89a83890Cc5d43D710846cEFCb4a41007a37347 |
+
 ## Kovan
 
 In all real use cases, you will have to create your own contract to take flashLoans, calling the `flashLoan` function on an ERC3156 compliant lender (or one of the wrappers in this repo), and implementing the `onFlashLoan` callback.
