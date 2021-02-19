@@ -10,7 +10,7 @@ So far, only the dYdX wrapper has been deployed, to allow for a degree of testin
 
 | Lender Contract      | Lender Address       |
 | ------------- |-------------- |
-| DYDXERC3156 | [0x9ADf4155D44053e1f8009d4550F2A7Cd456A817D](https://etherscan.io/address/0x9ADf4155D44053e1f8009d4550F2A7Cd456A817D) |
+| DYDXERC3156 | [0x6bdC1FCB2F13d1bA9D26ccEc3983d5D4bf318693](https://etherscan.io/address/0x6bdC1FCB2F13d1bA9D26ccEc3983d5D4bf318693) |
 
 ## Fantom
 
