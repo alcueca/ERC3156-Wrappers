@@ -10,7 +10,13 @@ So far, only the dYdX wrapper has been deployed, to allow for a degree of testin
 
 | Lender Contract      | Lender Address       |
 | ------------- |-------------- |
-| DYDXERC3156 | 0x9ADf4155D44053e1f8009d4550F2A7Cd456A817D |
+| DYDXERC3156 | [0x9ADf4155D44053e1f8009d4550F2A7Cd456A817D](https://etherscan.io/address/0x9ADf4155D44053e1f8009d4550F2A7Cd456A817D) |
+
+## Fantom
+
+| Lender Contract      | Lender Address       |
+| ------------- |-------------- |
+| DYDXERC3156 | [0xa89a83890cc5d43d710846cefcb4a41007a37347](https://ftmscan.com/address/0xa89a83890cc5d43d710846cefcb4a41007a37347) |
 
 ## Kovan
 
@@ -21,14 +27,14 @@ However, you can use FlashBorrower to kick the tires. You can give to the `flash
 
 | Lender Contract      | Lender Address       |
 | ------------- |-------------- |
-| FlashBorrower | 0x5e3538099b9d19Dc8EB13cb1AD2b0e93D2cC2EbB |
-| FlashMinter | 0xC8df3958bb0D68e22e4d974CdA71d73A4e7E73b9 |
-| FlashLender | 0xeef77EAE62e80F5F56b85Be318B57BF1470874F5 |
-| AaveERC3156 | 0xC355Fb535757B069D84B3bB01c27240DF973FBa2 |
-| DYDXERC3156 | 0xf1E70c817C82975Dfb6a0B7AB65b803f871E2c4E |
-| UniswapERC3156 | 0x353939fcA37c1782512229d5D4f0d3E83Bf46B2C |
-| YieldDaiERC3156 | 0x8E1ceabD0996bbDd15E611D26d333b8e9d684a27 |
-| YieldFYDaiERC3156 | 0x2F01fa8f4377682018B74B696933528ba03f1eb0 |
+| FlashBorrower | [0x5e3538099b9d19Dc8EB13cb1AD2b0e93D2cC2EbB](https://kovan.etherscan.io/address/0x5e3538099b9d19Dc8EB13cb1AD2b0e93D2cC2EbB) |
+| FlashMinter | [0xC8df3958bb0D68e22e4d974CdA71d73A4e7E73b9](https://kovan.etherscan.io/address/0xC8df3958bb0D68e22e4d974CdA71d73A4e7E73b9) |
+| FlashLender | [0xeef77EAE62e80F5F56b85Be318B57BF1470874F5](https://kovan.etherscan.io/address/0xeef77EAE62e80F5F56b85Be318B57BF1470874F5) |
+| AaveERC3156 | [0xC355Fb535757B069D84B3bB01c27240DF973FBa2](https://kovan.etherscan.io/address/0xC355Fb535757B069D84B3bB01c27240DF973FBa2) |
+| DYDXERC3156 | [0xf1E70c817C82975Dfb6a0B7AB65b803f871E2c4E](https://kovan.etherscan.io/address/0xf1E70c817C82975Dfb6a0B7AB65b803f871E2c4E) |
+| UniswapERC3156 | [0x353939fcA37c1782512229d5D4f0d3E83Bf46B2C](https://kovan.etherscan.io/address/0x353939fcA37c1782512229d5D4f0d3E83Bf46B2C) |
+| YieldDaiERC3156 | [0x8E1ceabD0996bbDd15E611D26d333b8e9d684a27](https://kovan.etherscan.io/address/0x8E1ceabD0996bbDd15E611D26d333b8e9d684a27) |
+| YieldFYDaiERC3156 | [0x2F01fa8f4377682018B74B696933528ba03f1eb0](https://kovan.etherscan.io/address/0x2F01fa8f4377682018B74B696933528ba03f1eb0) |
 
 
 ### Tested currencies
