@@ -125,10 +125,7 @@ contract UniswapERC3156 is IERC3156FlashLender, UniswapV2FlashBorrowerLike {
             receiver.onFlashLoan(origin, token, amount, fee, userData) == CALLBACK_SUCCESS,
             "Callback failed"
         );
-        // retrieve the borrowed amount plus fee from the receiver
-        IERC20(token).transferFrom(address(receiver), address(this), amount.add(fee));
-        
-        // send the borrowed amount plus fee to the uniswap pair
-        IERC20(token).transfer(msg.sender, amount.add(fee));
+        // retrieve the borrowed amount plus fee from the receiver and send it to the uniswap pair
+        IERC20(token).transferFrom(address(receiver), msg.sender, amount.add(fee));
     }
 }
