@@ -8,15 +8,15 @@ This project implements ERC-3156 wrappers for the flash loan functionality of dY
 
 So far, only the dYdX wrapper has been deployed, to allow for a degree of testing in mainnet. Please raise an issue if you would like to test any of the other wrappers. All wrappers will be deployed in mainnet no later than the date in which ERC3156 progresses to a Final state.
 
-| Lender Contract      | Lender Address       |
+| Lender Contract      | Lender Address       | Commit |
 | ------------- |-------------- |
-| DYDXERC3156 | [0x6bdC1FCB2F13d1bA9D26ccEc3983d5D4bf318693](https://etherscan.io/address/0x6bdC1FCB2F13d1bA9D26ccEc3983d5D4bf318693) |
+| DYDXERC3156 | [0x6bdC1FCB2F13d1bA9D26ccEc3983d5D4bf318693](https://etherscan.io/address/0x6bdC1FCB2F13d1bA9D26ccEc3983d5D4bf318693) | [5493629](https://github.com/albertocuestacanada/ERC3156-Wrappers/commit/54936296dcd74356da9387bb2023904b4d9cd755) |
 
 ## Fantom
 
 | Lender Contract      | Lender Address       |
 | ------------- |-------------- |
-| UniswapERC3156 | [0xa89a83890Cc5d43D710846cEFCb4a41007a37347](https://ftmscan.com/address/0xa89a83890cc5d43d710846cefcb4a41007a37347) |
+| UniswapERC3156 | [0xa89a83890Cc5d43D710846cEFCb4a41007a37347](https://ftmscan.com/address/0xa89a83890cc5d43d710846cefcb4a41007a37347) | [e9f4cdf](https://github.com/albertocuestacanada/ERC3156-Wrappers/commit/e9f4cdf439f95f32ee26e10c3e8d1484d4a2c41b) |
 
 ## Kovan
 
