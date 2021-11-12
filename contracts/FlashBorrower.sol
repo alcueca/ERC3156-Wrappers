@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.7.5;
+pragma experimental ABIEncoderV2;
 
 import "./interfaces/IERC20.sol";
 import "erc3156/contracts/interfaces/IERC3156FlashBorrower.sol";
 import "erc3156/contracts/interfaces/IERC3156FlashLender.sol";
-
 
 contract FlashBorrower is IERC3156FlashBorrower {
     enum Action {NORMAL, STEAL, REENTER}
@@ -16,6 +16,11 @@ contract FlashBorrower is IERC3156FlashBorrower {
     address public flashToken;
     uint256 public flashAmount;
     uint256 public flashFee;
+
+    struct FlashCallbackData {
+        uint256 amountOfUSDLToMint;
+        address poolForWETHLoan;
+    }
 
     /// @dev ERC-3156 Flash loan callback
     function onFlashLoan(address sender, address token, uint256 amount, uint256 fee, bytes calldata data) external override returns(bytes32) {
@@ -33,6 +38,28 @@ contract FlashBorrower is IERC3156FlashBorrower {
             flashBorrow(IERC3156FlashLender(msg.sender), token, amount * 2);
         }
         return CALLBACK_SUCCESS;
+    }
+
+    function flashBorrowForUniswapV3(
+        IERC3156FlashLender lender, 
+        address token, 
+        address poolForWETHLoan,
+        uint256 amountOfCollateralToBorrow, 
+        uint256 amountOfUSDLToMint
+    ) public {
+        // Use this to pack arbitrary data to `onFlashLoan`
+        approveRepayment(lender, token, amountOfCollateralToBorrow);
+        lender.flashLoan(
+            IERC3156FlashBorrower(address(this)),
+            token, 
+            amountOfCollateralToBorrow, 
+            abi.encode(
+                FlashCallbackData({
+                    amountOfUSDLToMint: amountOfUSDLToMint,
+                    poolForWETHLoan: poolForWETHLoan
+                })
+            )
+        );
     }
 
     function flashBorrow(IERC3156FlashLender lender, address token, uint256 amount) public {
