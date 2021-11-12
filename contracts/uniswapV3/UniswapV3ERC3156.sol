@@ -85,7 +85,11 @@ contract UniswapV3ERC3156 is IERC3156FlashLender, IUniswapV3FlashCallback {
      */
     function flashFee(address token, uint256 amount) public view override returns (uint256) {
         require(getPairAddress(token) != address(0), "Unsupported currency");
-        return ((amount * 3) / 997) + 1;    }
+        uint256 wLoan = amount * 1e6 / (1e6 - 3000); // 3000 = lpFees
+        uint256 wOwed = w_loan * 1e6 / (1e6 - 3000); // 3000 = loanFees
+        uint256 fee = w_owed - w_loan;
+        return fee;
+    }
 
     /**
      * @dev From ERC-3156. Loan `amount` tokens to `receiver`, which needs to return them plus fee to this contract within the same transaction.
