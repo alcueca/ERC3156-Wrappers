@@ -36,25 +36,19 @@ contract UniswapV3ERC3156 is IERC3156FlashLender, IUniswapV3FlashCallback {
 
     // DEFAULT TOKENS
     address weth;
-    address usdl;
-
-    // fee2 and fee3 are the two other fees associated with the two other pools of token0 and token1
-    struct FlashCallbackData {
-        uint256 amountOfUSDLToMint;
-        address poolForWETHLoan;
-    }
+    address dai;
 
     /// @param factory_ Uniswap v3 UniswapV3Factory address
     /// @param weth_ Weth contract used in Uniswap v3 Pairs
-    /// @param usdl_ Usdl contract used in Uniswap v3 Pairs
+    /// @param dai_ dai contract used in Uniswap v3 Pairs
     constructor(
         IUniswapV3Factory factory_,
         address weth_,
-        address usdl_
+        address dai_
     ) {
         factory = factory_;
         weth = weth_;
-        usdl = usdl_;
+        dai = dai_;
     }
 
     /**
@@ -63,7 +57,7 @@ contract UniswapV3ERC3156 is IERC3156FlashLender, IUniswapV3FlashCallback {
      * @return The Uniswap V3 Pair that will be used as the source of the flash loan.
      */
     function getPairAddress(address token) public view returns (address) {
-        address tokenOther = token == weth ? usdl : weth;
+        address tokenOther = token == weth ? dai : weth;
         return factory.getPool(token, tokenOther, 3000);
     }
 
@@ -99,13 +93,13 @@ contract UniswapV3ERC3156 is IERC3156FlashLender, IUniswapV3FlashCallback {
      * @dev From ERC-3156. Loan `amount` tokens to `receiver`, which needs to return them plus fee to this contract within the same transaction.
      * @param receiver The contract receiving the tokens, needs to implement the `onFlashLoan(address user, uint256 amount, uint256 fee, bytes calldata)` interface.
      * @param token The loan currency.
-     * @param amountOfCollateralToBorrow The amount of tokens lent.
+     * @param amount The amount of tokens lent.
      * @param userData A data parameter to be passed on to the `receiver` for any custom use.
      */
     function flashLoan(
         IERC3156FlashBorrower receiver,
         address token,
-        uint256 amountOfCollateralToBorrow,
+        uint256 amount,
         bytes memory userData
     ) external override returns (bool) {
         address pairAddress = getPairAddress(token);
@@ -113,38 +107,30 @@ contract UniswapV3ERC3156 is IERC3156FlashLender, IUniswapV3FlashCallback {
 
         if (permissionedPairAddress != pairAddress) permissionedPairAddress = pairAddress; // access control
 
-        (uint256 amountOfUSDLToMint, address poolForWETHLoan) = abi.decode(userData, (uint256, address)); // Use this to unpack arbitrary data
+        bytes memory data = abi.encode(amount, msg.sender, receiver, token, userData);
 
-        IUniswapV3Pool(poolForWETHLoan).flash(
-            address(receiver),
-            0,
-            amountOfCollateralToBorrow,
-            abi.encode(amountOfUSDLToMint, msg.sender, receiver, token)
-        );
+        IUniswapV3Pool(getPairAddress(token)).flash(address(receiver), 0, amount, data);
         return true;
     }
 
     // Flashswap Callback
     function uniswapV3FlashCallback(
-        uint256 fee0, // Fee on Token0 (USDL)
-        uint256 fee1, // Fee on Token1 (WETH)
+        uint256, // Fee on Token0
+        uint256, // Fee on Token1
         bytes calldata data
     ) external override {
         // access control
         require(msg.sender == permissionedPairAddress, 'only permissioned UniswapV3 pair can call');
 
-        (uint256 amount, IERC3156FlashBorrower receiver, address origin, address token) = abi.decode(
-            data,
-            (uint256, IERC3156FlashBorrower, address, address)
-        );
+        // decode data
+        (uint256 amount, address origin, IERC3156FlashBorrower receiver, address token, bytes memory userData) = abi
+            .decode(data, (uint256, address, IERC3156FlashBorrower, address, bytes));
         uint256 fee = flashFee(token, amount);
-
-        bytes memory decoded = abi.encode(FlashCallbackData({amountOfUSDLToMint: amount, poolForWETHLoan: msg.sender}));
 
         // // send the borrowed amount to the receiver
         IERC20(token).transfer(address(receiver), amount);
         // // do whatever the user wants
-        require(receiver.onFlashLoan(origin, token, amount, fee, decoded) == CALLBACK_SUCCESS, 'Callback failed');
+        require(receiver.onFlashLoan(origin, token, amount, fee, userData) == CALLBACK_SUCCESS, 'Callback failed');
         // // // retrieve the borrowed amount plus fee from the receiver and send it to the uniswap pair
         IERC20(token).transferFrom(address(receiver), msg.sender, amount.add(fee));
     }
