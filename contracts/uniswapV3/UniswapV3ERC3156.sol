@@ -9,20 +9,9 @@ import '@openzeppelin/contracts/token/ERC20/IERC20.sol';
 import 'erc3156/contracts/interfaces/IERC3156FlashBorrower.sol';
 import 'erc3156/contracts/interfaces/IERC3156FlashLender.sol';
 import '@uniswap/v3-core/contracts/interfaces/callback/IUniswapV3FlashCallback.sol';
-import '@uniswap/v3-core/contracts/libraries/LowGasSafeMath.sol';
-
-import '@uniswap/v3-periphery/contracts/base/PeripheryPayments.sol';
-import '@uniswap/v3-periphery/contracts/base/PeripheryImmutableState.sol';
-import '@uniswap/v3-periphery/contracts/libraries/PoolAddress.sol';
-import '@uniswap/v3-periphery/contracts/libraries/CallbackValidation.sol';
-import '@uniswap/v3-periphery/contracts/libraries/TransferHelper.sol';
-import '@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol';
 
 import '@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol';
 import '@uniswap/v3-core/contracts/interfaces/IUniswapV3Factory.sol';
-import '@uniswap/v3-core/contracts/interfaces/callback/IUniswapV3FlashCallback.sol';
-import '@uniswap/v3-periphery/contracts/base/PeripheryPayments.sol';
-import {IERC20} from '@openzeppelin/contracts/token/ERC20/IERC20.sol';
 
 contract UniswapV3ERC3156 is IERC3156FlashLender, IUniswapV3FlashCallback {
     using SafeMath for uint256;
