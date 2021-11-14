@@ -43,22 +43,17 @@ contract FlashBorrower is IERC3156FlashBorrower {
     function flashBorrowForUniswapV3(
         IERC3156FlashLender lender, 
         address token, 
-        address poolForWETHLoan,
-        uint256 amountOfCollateralToBorrow, 
-        uint256 amountOfUSDLToMint
+        // address poo,
+        uint256 amountOfCollateralToBorrow
     ) public {
         // Use this to pack arbitrary data to `onFlashLoan`
-        approveRepayment(lender, token, amountOfCollateralToBorrow);
+        bytes memory data = abi.encode(Action.NORMAL);
+        approveRepayment(lender, token, type(uint256).max);
         lender.flashLoan(
             IERC3156FlashBorrower(address(this)),
             token, 
             amountOfCollateralToBorrow, 
-            abi.encode(
-                FlashCallbackData({
-                    amountOfUSDLToMint: amountOfUSDLToMint,
-                    poolForWETHLoan: poolForWETHLoan
-                })
-            )
+            data
         );
     }
 

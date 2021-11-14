@@ -94,11 +94,18 @@ contract UniswapV3ERC3156 is IERC3156FlashLender, IUniswapV3FlashCallback {
         address pairAddress = getPairAddress(token);
         require(pairAddress != address(0), 'Unsupported currency');
 
+        IUniswapV3Pool pair = IUniswapV3Pool(pairAddress);
+
         if (permissionedPairAddress != pairAddress) permissionedPairAddress = pairAddress; // access control
+
+        address token0 = pair.token0();
+        address token1 = pair.token1();
+        uint amount0 = token == token0 ? amount : 0;
+        uint amount1 = token == token1 ? amount : 0;
 
         bytes memory data = abi.encode(amount, msg.sender, receiver, token, userData);
 
-        IUniswapV3Pool(getPairAddress(token)).flash(address(receiver), 0, amount, data);
+        IUniswapV3Pool(getPairAddress(token)).flash(address(this), amount0, amount1, data);
         return true;
     }
 
@@ -121,6 +128,7 @@ contract UniswapV3ERC3156 is IERC3156FlashLender, IUniswapV3FlashCallback {
         // // do whatever the user wants
         require(receiver.onFlashLoan(origin, token, amount, fee, userData) == CALLBACK_SUCCESS, 'Callback failed');
         // // // retrieve the borrowed amount plus fee from the receiver and send it to the uniswap pair
+
         IERC20(token).transferFrom(address(receiver), msg.sender, amount.add(fee));
     }
 }

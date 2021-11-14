@@ -48,6 +48,9 @@ if (!etherscanKey) {
 module.exports = {
   defaultNetwork: 'hardhat',
   networks: {
+    hardhat: {
+      allowUnlimitedContractSize: true,
+    },
     kovan: {
       accounts,
       url: nodeUrl('kovan')

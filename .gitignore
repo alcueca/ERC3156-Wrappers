@@ -31,3 +31,5 @@ package-lock.json
 
 # Crytic
 crytic-export/
+
+.env
