@@ -1,11 +1,13 @@
 const fs = require('fs')
 const path = require('path')
 require('@nomiclabs/hardhat-truffle5')
+require("@nomiclabs/hardhat-waffle");
 require('solidity-coverage')
 require('hardhat-gas-reporter')
 require('hardhat-deploy')
 require('@nomiclabs/hardhat-etherscan')
 
+require('dotenv').config()
 
 // REQUIRED TO ENSURE METADATA IS SAVED IN DEPLOYMENTS (because solidity-coverage disable it otherwise)
 const {
@@ -29,6 +31,7 @@ function nodeUrl(network) {
 }
 
 let mnemonic = process.env.MNEMONIC;
+console.log(mnemonic)
 if (!mnemonic) {
   try {
     mnemonic = fs.readFileSync(path.resolve(__dirname, '.secret')).toString().trim()
@@ -66,6 +69,10 @@ module.exports = {
     ropsten: {
       accounts,
       url: nodeUrl('ropsten')
+    },
+    arbitrumRinkeby: {
+      accounts,
+      url: `https://arbitrum-rinkeby.infura.io/v3/${process.env.INFURA_API_KEY}`
     },
     mainnet: {
       accounts,
