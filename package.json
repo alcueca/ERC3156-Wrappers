@@ -1,14 +1,17 @@
 {
-  "name": "erc20flash",
-  "version": "0.3.0",
-  "description": "Solidity contracts implementing flash lending",
+  "name": "erc3156-wrappers",
+  "version": "0.0.1",
+  "description": "ERC3156 wrapper contracts for popular flash lenders",
   "author": "Alberto Cuesta Cañada",
   "engines": {
     "node": ">= 10.12.0",
     "npm": ">= 6.4.0",
     "yarn": ">= 1.10.0"
   },
-  "files": [],
+  "files": [
+    "contracts",
+    "!contracts/mocks"
+  ],
   "keywords": [
     "solidity",
     "ethereum",
