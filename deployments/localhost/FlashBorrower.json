@@ -1,0 +1,328 @@
+{
+  "address": "0x268740f11c2eeee5b43F84f08c3d982824aE24aD",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "CALLBACK_SUCCESS",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IERC3156FlashLender",
+          "name": "lender",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "approveRepayment",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "flashAmount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "flashBalance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IERC3156FlashLender",
+          "name": "lender",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "flashBorrow",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IERC3156FlashLender",
+          "name": "lender",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "flashBorrowAndReenter",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IERC3156FlashLender",
+          "name": "lender",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "flashBorrowAndSteal",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IERC3156FlashLender",
+          "name": "lender",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amountOfCollateralToBorrow",
+          "type": "uint256"
+        }
+      ],
+      "name": "flashBorrowForUniswapV3",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "flashFee",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "flashSender",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "flashToken",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "fee",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "onFlashLoan",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0xbda8d606ffac8e487aacefd1499d9f18434e4251446138f911794cfd6aedcc81",
+  "receipt": {
+    "to": "0x4e59b44847b379578588920cA78FbF26c0B4956C",
+    "from": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+    "contractAddress": null,
+    "transactionIndex": 0,
+    "gasUsed": "962516",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x74c2e27d7cce698e3e108c7b1efc7d241695cd0849347194be3b781b35764e2e",
+    "transactionHash": "0xbda8d606ffac8e487aacefd1499d9f18434e4251446138f911794cfd6aedcc81",
+    "logs": [],
+    "blockNumber": 3,
+    "cumulativeGasUsed": "962516",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "solcInputHash": "25c6dc3bec3c207ca25a21b6d183339f",
+  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"CALLBACK_SUCCESS\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract IERC3156FlashLender\",\"name\":\"lender\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"approveRepayment\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"flashAmount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"flashBalance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract IERC3156FlashLender\",\"name\":\"lender\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"flashBorrow\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract IERC3156FlashLender\",\"name\":\"lender\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"flashBorrowAndReenter\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract IERC3156FlashLender\",\"name\":\"lender\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"flashBorrowAndSteal\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract IERC3156FlashLender\",\"name\":\"lender\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amountOfCollateralToBorrow\",\"type\":\"uint256\"}],\"name\":\"flashBorrowForUniswapV3\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"flashFee\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"flashSender\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"flashToken\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"fee\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"onFlashLoan\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"onFlashLoan(address,address,uint256,uint256,bytes)\":{\"details\":\"ERC-3156 Flash loan callback\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/FlashBorrower.sol\":\"FlashBorrower\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/FlashBorrower.sol\":{\"content\":\"// SPDX-License-Identifier: GPL-3.0-or-later\\npragma solidity ^0.7.5;\\npragma experimental ABIEncoderV2;\\n\\nimport \\\"./interfaces/IERC20.sol\\\";\\nimport \\\"erc3156/contracts/interfaces/IERC3156FlashBorrower.sol\\\";\\nimport \\\"erc3156/contracts/interfaces/IERC3156FlashLender.sol\\\";\\n\\ncontract FlashBorrower is IERC3156FlashBorrower {\\n    enum Action {NORMAL, STEAL, REENTER}\\n\\n    bytes32 public constant CALLBACK_SUCCESS = keccak256(\\\"ERC3156FlashBorrower.onFlashLoan\\\");\\n\\n    uint256 public flashBalance;\\n    address public flashSender;\\n    address public flashToken;\\n    uint256 public flashAmount;\\n    uint256 public flashFee;\\n\\n    struct FlashCallbackData {\\n        uint256 amountOfUSDLToMint;\\n        address poolForWETHLoan;\\n    }\\n\\n    /// @dev ERC-3156 Flash loan callback\\n    function onFlashLoan(address sender, address token, uint256 amount, uint256 fee, bytes calldata data) external override returns(bytes32) {\\n        require(sender == address(this), \\\"FlashBorrower: External loan initiator\\\");\\n        (Action action) = abi.decode(data, (Action)); // Use this to unpack arbitrary data\\n        flashSender = sender;\\n        flashToken = token;\\n        flashAmount = amount;\\n        flashFee = fee;\\n        if (action == Action.NORMAL) {\\n            flashBalance = IERC20(token).balanceOf(address(this));\\n        } else if (action == Action.STEAL) {\\n            // do nothing\\n        } else if (action == Action.REENTER) {\\n            flashBorrow(IERC3156FlashLender(msg.sender), token, amount * 2);\\n        }\\n        return CALLBACK_SUCCESS;\\n    }\\n\\n    function flashBorrowForUniswapV3(\\n        IERC3156FlashLender lender, \\n        address token, \\n        // address poo,\\n        uint256 amountOfCollateralToBorrow\\n    ) public {\\n        // Use this to pack arbitrary data to `onFlashLoan`\\n        bytes memory data = abi.encode(Action.NORMAL);\\n        approveRepayment(lender, token, type(uint256).max);\\n        lender.flashLoan(\\n            IERC3156FlashBorrower(address(this)),\\n            token, \\n            amountOfCollateralToBorrow, \\n            data\\n        );\\n    }\\n\\n    function flashBorrow(IERC3156FlashLender lender, address token, uint256 amount) public {\\n        // Use this to pack arbitrary data to `onFlashLoan`\\n        bytes memory data = abi.encode(Action.NORMAL);\\n        approveRepayment(lender, token, amount);\\n        lender.flashLoan(this, token, amount, data);\\n    }\\n\\n    function flashBorrowAndSteal(IERC3156FlashLender lender, address token, uint256 amount) public {\\n        // Use this to pack arbitrary data to `onFlashLoan`\\n        bytes memory data = abi.encode(Action.STEAL);\\n        lender.flashLoan(this, token, amount, data);\\n    }\\n\\n    function flashBorrowAndReenter(IERC3156FlashLender lender, address token, uint256 amount) public {\\n        // Use this to pack arbitrary data to `onFlashLoan`\\n        bytes memory data = abi.encode(Action.REENTER);\\n        approveRepayment(lender, token, amount);\\n        lender.flashLoan(this, token, amount, data);\\n    }\\n\\n    function approveRepayment(IERC3156FlashLender lender, address token, uint256 amount) public {\\n        uint256 _allowance = IERC20(token).allowance(address(this), address(lender));\\n        uint256 _fee = lender.flashFee(token, amount);\\n        uint256 _repayment = amount + _fee;\\n        IERC20(token).approve(address(lender), _allowance + _repayment);\\n    }\\n}\\n\",\"keccak256\":\"0xca6c377d6c6315282789c240dd824e39fb79de5a3f3075d05d82aff9329ede5b\",\"license\":\"GPL-3.0-or-later\"},\"contracts/interfaces/IERC20.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n\\npragma solidity ^0.7.0 || ^0.8.0;\\n\\n/**\\n * @dev Interface of the ERC20 standard as defined in the EIP.\\n */\\ninterface IERC20 {\\n    /**\\n     * @dev Returns the amount of tokens in existence.\\n     */\\n    function totalSupply() external view returns (uint256);\\n\\n    /**\\n     * @dev Returns the amount of tokens owned by `account`.\\n     */\\n    function balanceOf(address account) external view returns (uint256);\\n\\n    /**\\n     * @dev Moves `amount` tokens from the caller's account to `recipient`.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * Emits a {Transfer} event.\\n     */\\n    function transfer(address recipient, uint256 amount) external returns (bool);\\n\\n    /**\\n     * @dev Returns the remaining number of tokens that `spender` will be\\n     * allowed to spend on behalf of `owner` through {transferFrom}. This is\\n     * zero by default.\\n     *\\n     * This value changes when {approve} or {transferFrom} are called.\\n     */\\n    function allowance(address owner, address spender) external view returns (uint256);\\n\\n    /**\\n     * @dev Sets `amount` as the allowance of `spender` over the caller's tokens.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * IMPORTANT: Beware that changing an allowance with this method brings the risk\\n     * that someone may use both the old and the new allowance by unfortunate\\n     * transaction ordering. One possible solution to mitigate this race\\n     * condition is to first reduce the spender's allowance to 0 and set the\\n     * desired value afterwards:\\n     * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729\\n     *\\n     * Emits an {Approval} event.\\n     */\\n    function approve(address spender, uint256 amount) external returns (bool);\\n\\n    /**\\n     * @dev Moves `amount` tokens from `sender` to `recipient` using the\\n     * allowance mechanism. `amount` is then deducted from the caller's\\n     * allowance.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * Emits a {Transfer} event.\\n     */\\n    function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);\\n\\n    /**\\n     * @dev Emitted when `value` tokens are moved from one account (`from`) to\\n     * another (`to`).\\n     *\\n     * Note that `value` may be zero.\\n     */\\n    event Transfer(address indexed from, address indexed to, uint256 value);\\n\\n    /**\\n     * @dev Emitted when the allowance of a `spender` for an `owner` is set by\\n     * a call to {approve}. `value` is the new allowance.\\n     */\\n    event Approval(address indexed owner, address indexed spender, uint256 value);\\n}\",\"keccak256\":\"0x63b8f187cb09d61df610891f237764aaee2596e483a4f600bad1220edd0de7b8\",\"license\":\"MIT\"},\"erc3156/contracts/interfaces/IERC3156FlashBorrower.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity >=0.6.0 <=0.8.0;\\n\\n\\ninterface IERC3156FlashBorrower {\\n\\n    /**\\n     * @dev Receive a flash loan.\\n     * @param initiator The initiator of the loan.\\n     * @param token The loan currency.\\n     * @param amount The amount of tokens lent.\\n     * @param fee The additional amount of tokens to repay.\\n     * @param data Arbitrary data structure, intended to contain user-defined parameters.\\n     * @return The keccak256 hash of \\\"ERC3156FlashBorrower.onFlashLoan\\\"\\n     */\\n    function onFlashLoan(\\n        address initiator,\\n        address token,\\n        uint256 amount,\\n        uint256 fee,\\n        bytes calldata data\\n    ) external returns (bytes32);\\n}\\n\",\"keccak256\":\"0x7a0afdaceaade0d31c37a09e0ceef82ea430bd5c415a93b7c69795f0042b2be6\",\"license\":\"MIT\"},\"erc3156/contracts/interfaces/IERC3156FlashLender.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity >=0.6.0 <=0.8.0;\\nimport \\\"./IERC3156FlashBorrower.sol\\\";\\n\\n\\ninterface IERC3156FlashLender {\\n\\n    /**\\n     * @dev The amount of currency available to be lended.\\n     * @param token The loan currency.\\n     * @return The amount of `token` that can be borrowed.\\n     */\\n    function maxFlashLoan(\\n        address token\\n    ) external view returns (uint256);\\n\\n    /**\\n     * @dev The fee to be charged for a given loan.\\n     * @param token The loan currency.\\n     * @param amount The amount of tokens lent.\\n     * @return The amount of `token` to be charged for the loan, on top of the returned principal.\\n     */\\n    function flashFee(\\n        address token,\\n        uint256 amount\\n    ) external view returns (uint256);\\n\\n    /**\\n     * @dev Initiate a flash loan.\\n     * @param receiver The receiver of the tokens in the loan, and the receiver of the callback.\\n     * @param token The loan currency.\\n     * @param amount The amount of tokens lent.\\n     * @param data Arbitrary data structure, intended to contain user-defined parameters.\\n     */\\n    function flashLoan(\\n        IERC3156FlashBorrower receiver,\\n        address token,\\n        uint256 amount,\\n        bytes calldata data\\n    ) external returns (bool);\\n}\",\"keccak256\":\"0xe239a11febf64e716aa98d0a0fd60fdb60a1873c6dee02e3ec4f69fb98bfd3a3\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5061106f806100206000396000f3fe608060405234801561001057600080fd5b50600436106100b45760003560e01c806387730b261161007157806387730b2614610179578063b570137a14610197578063d3cf70b3146101b5578063d3eaa4d8146101d1578063e07df5b4146101ed578063ebbc8d241461020b576100b4565b806323e30c8b146100b95780632c4db9b4146100e957806344feed231461010557806377ee0855146101215780637df3cc911461013f5780638237e5381461015b575b600080fd5b6100d360048036038101906100ce9190610aaa565b610229565b6040516100e09190610d6c565b60405180910390f35b61010360048036038101906100fe9190610b65565b610470565b005b61011f600480360381019061011a9190610b65565b61062d565b005b610129610714565b6040516101369190610cff565b60405180910390f35b61015960048036038101906101549190610b65565b61073a565b005b610163610802565b6040516101709190610d6c565b60405180910390f35b610181610826565b60405161018e9190610cff565b60405180910390f35b61019f61084c565b6040516101ac9190610e5a565b60405180910390f35b6101cf60048036038101906101ca9190610b65565b610852565b005b6101eb60048036038101906101e69190610b65565b610919565b005b6101f56109d6565b6040516102029190610e5a565b60405180910390f35b6102136109dc565b6040516102209190610e5a565b60405180910390f35b60003073ffffffffffffffffffffffffffffffffffffffff168773ffffffffffffffffffffffffffffffffffffffff1614610299576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040161029090610e3a565b60405180910390fd5b600083838101906102aa9190610bb4565b905087600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555086600260006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555085600381905550846004819055506000600281111561034957fe5b81600281111561035557fe5b14156103ef578673ffffffffffffffffffffffffffffffffffffffff166370a08231306040518263ffffffff1660e01b81526004016103949190610cff565b60206040518083038186803b1580156103ac57600080fd5b505afa1580156103c0573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906103e49190610bdd565b600081905550610442565b600160028111156103fc57fe5b81600281111561040857fe5b141561041357610441565b60028081111561041f57fe5b81600281111561042b57fe5b14156104405761043f338860028902610852565b5b5b5b7f439148f0bbc682ca079e46d6e2c2f0c1e3b820f1a291b069d8882abf8cf18dd99150509695505050505050565b60008273ffffffffffffffffffffffffffffffffffffffff1663dd62ed3e30866040518363ffffffff1660e01b81526004016104ad929190610d1a565b60206040518083038186803b1580156104c557600080fd5b505afa1580156104d9573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906104fd9190610bdd565b905060008473ffffffffffffffffffffffffffffffffffffffff1663d9d98ce485856040518363ffffffff1660e01b815260040161053c929190610d43565b60206040518083038186803b15801561055457600080fd5b505afa158015610568573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061058c9190610bdd565b9050600081840190508473ffffffffffffffffffffffffffffffffffffffff1663095ea7b3878386016040518363ffffffff1660e01b81526004016105d2929190610d43565b602060405180830381600087803b1580156105ec57600080fd5b505af1158015610600573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906106249190610b3c565b50505050505050565b6000806040516020016106409190610e1f565b604051602081830303815290604052905061067c84847fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff610470565b8373ffffffffffffffffffffffffffffffffffffffff16635cffe9de308585856040518563ffffffff1660e01b81526004016106bb9493929190610dd3565b602060405180830381600087803b1580156106d557600080fd5b505af11580156106e9573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061070d9190610b3c565b5050505050565b600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000600260405160200161074e9190610e1f565b604051602081830303815290604052905061076a848484610470565b8373ffffffffffffffffffffffffffffffffffffffff16635cffe9de308585856040518563ffffffff1660e01b81526004016107a99493929190610d87565b602060405180830381600087803b1580156107c357600080fd5b505af11580156107d7573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906107fb9190610b3c565b5050505050565b7f439148f0bbc682ca079e46d6e2c2f0c1e3b820f1a291b069d8882abf8cf18dd981565b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60035481565b6000806040516020016108659190610e1f565b6040516020818303038152906040529050610881848484610470565b8373ffffffffffffffffffffffffffffffffffffffff16635cffe9de308585856040518563ffffffff1660e01b81526004016108c09493929190610d87565b602060405180830381600087803b1580156108da57600080fd5b505af11580156108ee573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906109129190610b3c565b5050505050565b6000600160405160200161092d9190610e1f565b60405160208183030381529060405290508373ffffffffffffffffffffffffffffffffffffffff16635cffe9de308585856040518563ffffffff1660e01b815260040161097d9493929190610d87565b602060405180830381600087803b15801561099757600080fd5b505af11580156109ab573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906109cf9190610b3c565b5050505050565b60045481565b60005481565b6000813590506109f181610fcd565b92915050565b600081519050610a0681610fe4565b92915050565b60008083601f840112610a1e57600080fd5b8235905067ffffffffffffffff811115610a3757600080fd5b602083019150836001820283011115610a4f57600080fd5b9250929050565b600081359050610a6581610ffb565b92915050565b600081359050610a7a81611012565b92915050565b600081359050610a8f81611022565b92915050565b600081519050610aa481611022565b92915050565b60008060008060008060a08789031215610ac357600080fd5b6000610ad189828a016109e2565b9650506020610ae289828a016109e2565b9550506040610af389828a01610a80565b9450506060610b0489828a01610a80565b935050608087013567ffffffffffffffff811115610b2157600080fd5b610b2d89828a01610a0c565b92509250509295509295509295565b600060208284031215610b4e57600080fd5b6000610b5c848285016109f7565b91505092915050565b600080600060608486031215610b7a57600080fd5b6000610b8886828701610a56565b9350506020610b99868287016109e2565b9250506040610baa86828701610a80565b9150509250925092565b600060208284031215610bc657600080fd5b6000610bd484828501610a6b565b91505092915050565b600060208284031215610bef57600080fd5b6000610bfd84828501610a95565b91505092915050565b610c0f81610ea2565b82525050565b610c1e81610ec0565b82525050565b6000610c2f82610e75565b610c398185610e80565b9350610c49818560208601610f73565b610c5281610fa8565b840191505092915050565b610c6681610f19565b82525050565b610c7581610f3d565b82525050565b610c8481610f61565b82525050565b6000610c97602683610e91565b91507f466c617368426f72726f7765723a2045787465726e616c206c6f616e20696e6960008301527f746961746f7200000000000000000000000000000000000000000000000000006020830152604082019050919050565b610cf981610f0f565b82525050565b6000602082019050610d146000830184610c06565b92915050565b6000604082019050610d2f6000830185610c06565b610d3c6020830184610c06565b9392505050565b6000604082019050610d586000830185610c06565b610d656020830184610cf0565b9392505050565b6000602082019050610d816000830184610c15565b92915050565b6000608082019050610d9c6000830187610c5d565b610da96020830186610c06565b610db66040830185610cf0565b8181036060830152610dc88184610c24565b905095945050505050565b6000608082019050610de86000830187610c6c565b610df56020830186610c06565b610e026040830185610cf0565b8181036060830152610e148184610c24565b905095945050505050565b6000602082019050610e346000830184610c7b565b92915050565b60006020820190508181036000830152610e5381610c8a565b9050919050565b6000602082019050610e6f6000830184610cf0565b92915050565b600081519050919050565b600082825260208201905092915050565b600082825260208201905092915050565b6000610ead82610eef565b9050919050565b60008115159050919050565b6000819050919050565b6000610ed582610ea2565b9050919050565b6000819050610eea82610fb9565b919050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b6000819050919050565b6000610f2482610f2b565b9050919050565b6000610f3682610eef565b9050919050565b6000610f4882610f4f565b9050919050565b6000610f5a82610eef565b9050919050565b6000610f6c82610edc565b9050919050565b60005b83811015610f91578082015181840152602081019050610f76565b83811115610fa0576000848401525b50505050565bfe5b6000601f19601f8301169050919050565b60038110610fca57610fc9610fa6565b5b50565b610fd681610ea2565b8114610fe157600080fd5b50565b610fed81610eb4565b8114610ff857600080fd5b50565b61100481610eca565b811461100f57600080fd5b50565b6003811061101f57600080fd5b50565b61102b81610f0f565b811461103657600080fd5b5056fea264697066735822122027e8c62426253b23486f2c88b269bba2e74ecd7bb8f79a359ee6dc42a551d76064736f6c63430007060033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100b45760003560e01c806387730b261161007157806387730b2614610179578063b570137a14610197578063d3cf70b3146101b5578063d3eaa4d8146101d1578063e07df5b4146101ed578063ebbc8d241461020b576100b4565b806323e30c8b146100b95780632c4db9b4146100e957806344feed231461010557806377ee0855146101215780637df3cc911461013f5780638237e5381461015b575b600080fd5b6100d360048036038101906100ce9190610aaa565b610229565b6040516100e09190610d6c565b60405180910390f35b61010360048036038101906100fe9190610b65565b610470565b005b61011f600480360381019061011a9190610b65565b61062d565b005b610129610714565b6040516101369190610cff565b60405180910390f35b61015960048036038101906101549190610b65565b61073a565b005b610163610802565b6040516101709190610d6c565b60405180910390f35b610181610826565b60405161018e9190610cff565b60405180910390f35b61019f61084c565b6040516101ac9190610e5a565b60405180910390f35b6101cf60048036038101906101ca9190610b65565b610852565b005b6101eb60048036038101906101e69190610b65565b610919565b005b6101f56109d6565b6040516102029190610e5a565b60405180910390f35b6102136109dc565b6040516102209190610e5a565b60405180910390f35b60003073ffffffffffffffffffffffffffffffffffffffff168773ffffffffffffffffffffffffffffffffffffffff1614610299576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040161029090610e3a565b60405180910390fd5b600083838101906102aa9190610bb4565b905087600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555086600260006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555085600381905550846004819055506000600281111561034957fe5b81600281111561035557fe5b14156103ef578673ffffffffffffffffffffffffffffffffffffffff166370a08231306040518263ffffffff1660e01b81526004016103949190610cff565b60206040518083038186803b1580156103ac57600080fd5b505afa1580156103c0573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906103e49190610bdd565b600081905550610442565b600160028111156103fc57fe5b81600281111561040857fe5b141561041357610441565b60028081111561041f57fe5b81600281111561042b57fe5b14156104405761043f338860028902610852565b5b5b5b7f439148f0bbc682ca079e46d6e2c2f0c1e3b820f1a291b069d8882abf8cf18dd99150509695505050505050565b60008273ffffffffffffffffffffffffffffffffffffffff1663dd62ed3e30866040518363ffffffff1660e01b81526004016104ad929190610d1a565b60206040518083038186803b1580156104c557600080fd5b505afa1580156104d9573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906104fd9190610bdd565b905060008473ffffffffffffffffffffffffffffffffffffffff1663d9d98ce485856040518363ffffffff1660e01b815260040161053c929190610d43565b60206040518083038186803b15801561055457600080fd5b505afa158015610568573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061058c9190610bdd565b9050600081840190508473ffffffffffffffffffffffffffffffffffffffff1663095ea7b3878386016040518363ffffffff1660e01b81526004016105d2929190610d43565b602060405180830381600087803b1580156105ec57600080fd5b505af1158015610600573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906106249190610b3c565b50505050505050565b6000806040516020016106409190610e1f565b604051602081830303815290604052905061067c84847fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff610470565b8373ffffffffffffffffffffffffffffffffffffffff16635cffe9de308585856040518563ffffffff1660e01b81526004016106bb9493929190610dd3565b602060405180830381600087803b1580156106d557600080fd5b505af11580156106e9573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061070d9190610b3c565b5050505050565b600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000600260405160200161074e9190610e1f565b604051602081830303815290604052905061076a848484610470565b8373ffffffffffffffffffffffffffffffffffffffff16635cffe9de308585856040518563ffffffff1660e01b81526004016107a99493929190610d87565b602060405180830381600087803b1580156107c357600080fd5b505af11580156107d7573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906107fb9190610b3c565b5050505050565b7f439148f0bbc682ca079e46d6e2c2f0c1e3b820f1a291b069d8882abf8cf18dd981565b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60035481565b6000806040516020016108659190610e1f565b6040516020818303038152906040529050610881848484610470565b8373ffffffffffffffffffffffffffffffffffffffff16635cffe9de308585856040518563ffffffff1660e01b81526004016108c09493929190610d87565b602060405180830381600087803b1580156108da57600080fd5b505af11580156108ee573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906109129190610b3c565b5050505050565b6000600160405160200161092d9190610e1f565b60405160208183030381529060405290508373ffffffffffffffffffffffffffffffffffffffff16635cffe9de308585856040518563ffffffff1660e01b815260040161097d9493929190610d87565b602060405180830381600087803b15801561099757600080fd5b505af11580156109ab573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906109cf9190610b3c565b5050505050565b60045481565b60005481565b6000813590506109f181610fcd565b92915050565b600081519050610a0681610fe4565b92915050565b60008083601f840112610a1e57600080fd5b8235905067ffffffffffffffff811115610a3757600080fd5b602083019150836001820283011115610a4f57600080fd5b9250929050565b600081359050610a6581610ffb565b92915050565b600081359050610a7a81611012565b92915050565b600081359050610a8f81611022565b92915050565b600081519050610aa481611022565b92915050565b60008060008060008060a08789031215610ac357600080fd5b6000610ad189828a016109e2565b9650506020610ae289828a016109e2565b9550506040610af389828a01610a80565b9450506060610b0489828a01610a80565b935050608087013567ffffffffffffffff811115610b2157600080fd5b610b2d89828a01610a0c565b92509250509295509295509295565b600060208284031215610b4e57600080fd5b6000610b5c848285016109f7565b91505092915050565b600080600060608486031215610b7a57600080fd5b6000610b8886828701610a56565b9350506020610b99868287016109e2565b9250506040610baa86828701610a80565b9150509250925092565b600060208284031215610bc657600080fd5b6000610bd484828501610a6b565b91505092915050565b600060208284031215610bef57600080fd5b6000610bfd84828501610a95565b91505092915050565b610c0f81610ea2565b82525050565b610c1e81610ec0565b82525050565b6000610c2f82610e75565b610c398185610e80565b9350610c49818560208601610f73565b610c5281610fa8565b840191505092915050565b610c6681610f19565b82525050565b610c7581610f3d565b82525050565b610c8481610f61565b82525050565b6000610c97602683610e91565b91507f466c617368426f72726f7765723a2045787465726e616c206c6f616e20696e6960008301527f746961746f7200000000000000000000000000000000000000000000000000006020830152604082019050919050565b610cf981610f0f565b82525050565b6000602082019050610d146000830184610c06565b92915050565b6000604082019050610d2f6000830185610c06565b610d3c6020830184610c06565b9392505050565b6000604082019050610d586000830185610c06565b610d656020830184610cf0565b9392505050565b6000602082019050610d816000830184610c15565b92915050565b6000608082019050610d9c6000830187610c5d565b610da96020830186610c06565b610db66040830185610cf0565b8181036060830152610dc88184610c24565b905095945050505050565b6000608082019050610de86000830187610c6c565b610df56020830186610c06565b610e026040830185610cf0565b8181036060830152610e148184610c24565b905095945050505050565b6000602082019050610e346000830184610c7b565b92915050565b60006020820190508181036000830152610e5381610c8a565b9050919050565b6000602082019050610e6f6000830184610cf0565b92915050565b600081519050919050565b600082825260208201905092915050565b600082825260208201905092915050565b6000610ead82610eef565b9050919050565b60008115159050919050565b6000819050919050565b6000610ed582610ea2565b9050919050565b6000819050610eea82610fb9565b919050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b6000819050919050565b6000610f2482610f2b565b9050919050565b6000610f3682610eef565b9050919050565b6000610f4882610f4f565b9050919050565b6000610f5a82610eef565b9050919050565b6000610f6c82610edc565b9050919050565b60005b83811015610f91578082015181840152602081019050610f76565b83811115610fa0576000848401525b50505050565bfe5b6000601f19601f8301169050919050565b60038110610fca57610fc9610fa6565b5b50565b610fd681610ea2565b8114610fe157600080fd5b50565b610fed81610eb4565b8114610ff857600080fd5b50565b61100481610eca565b811461100f57600080fd5b50565b6003811061101f57600080fd5b50565b61102b81610f0f565b811461103657600080fd5b5056fea264697066735822122027e8c62426253b23486f2c88b269bba2e74ecd7bb8f79a359ee6dc42a551d76064736f6c63430007060033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "onFlashLoan(address,address,uint256,uint256,bytes)": {
+        "details": "ERC-3156 Flash loan callback"
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 7711,
+        "contract": "contracts/FlashBorrower.sol:FlashBorrower",
+        "label": "flashBalance",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 7713,
+        "contract": "contracts/FlashBorrower.sol:FlashBorrower",
+        "label": "flashSender",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_address"
+      },
+      {
+        "astId": 7715,
+        "contract": "contracts/FlashBorrower.sol:FlashBorrower",
+        "label": "flashToken",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_address"
+      },
+      {
+        "astId": 7717,
+        "contract": "contracts/FlashBorrower.sol:FlashBorrower",
+        "label": "flashAmount",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 7719,
+        "contract": "contracts/FlashBorrower.sol:FlashBorrower",
+        "label": "flashFee",
+        "offset": 0,
+        "slot": "4",
+        "type": "t_uint256"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}
